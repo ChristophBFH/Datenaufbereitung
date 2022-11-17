@@ -42,3 +42,22 @@ df_1003$kultur_leader1[df_1003$kultur_leader1==5]<-4
 df_1003$kultur_leader1[df_1003$kultur_leader1==6]<-5
 df_1003$kultur_leader1[df_1003$kultur_leader1==7]<-6
 df_1003$kultur_leader1[df_1003$kultur_leader1==8]<-7
+
+# Annahmen ----
+scatterplotMatrix(~ GES_technostress+GSC_cq_LZK_aufgberu+GSC_cq_LZK_aufgstell+GSC_cq_LZK_burn+GSC_cq_LZK_zufrid+GSC_EQ5D_Gesundheitszust+GSC_nx_Schlaf+GSC_vKorff_KSZ_metr+GSC_WAI_Gesamt_Score+GES_technostress,
+                  data=df.reg.subset.imput, smooth=FALSE, regLine=FALSE, ellipse=TRUE,
+                  diagonal=FALSE, legend=list(coords="bottomleft"))
+
+
+shapiro.test(df.reg.subset.imput$GES_technostress) #test for normal distribution = NOT
+
+
+qq.ts<-lm(GES_technostress~GSC_cq_LZK_burn, data = df.reg.subset.imput) #QQ-Plot
+plot(qq.ts)
+
+
+plot(ecdf(qq.ts[['residuals']])) #CDF
+
+vif(lm(hpq_absolutPraesentismus~ .,data = df.hpq_absolut_praesentismus.def1)) #for VIF Test
+
+ncvTest(lm(hpq_absolutPraesentismus~ .,data = df.hpq_absolut_praesentismus.def2)) # for heteroscedastcity tests. If below 0.05 P value, we have heteroscedasticity
