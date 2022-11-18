@@ -69,4 +69,21 @@ df1<-tibble::rowid_to_column(df1)
 with(dfn, match(StringID, unique(StringID)))  
 #https://stackoverflow.com/questions/48881942/add-numeric-id-corresponding-with-a-string-id-in-r
 
-3
+# Mache aus ä ein ae
+a <- c("ä", "ae") #small a with colon
+A <- c("Ä", "Ae") #big A with colon
+u <- c("ü", "ue") #small u with colon
+U <- c("Ü", "Ue") #big U with colon
+o <- c("ö", "oe") #small o with colon
+O <- c("Ö", "Oe") #big O with colon
+m <- cbind(a,A,u,U,o,O, deparse.level=0)
+swiss2 <- function(m, data){
+  for (i in seq_len(ncol(m))){
+    data <- gsub(paste(m[,i], sep=",")[1],paste(m[,i], sep=",")[2], data,
+                 ignore.case=F, perl = F, fixed = F, useBytes = F)
+  }
+  data
+}
+
+#This runs the function from above
+df1<-swiss2(m, df$text)
