@@ -106,3 +106,6 @@ alpha(digicomp)
 
 #remove row with row numbre
 df[-c(2:4, 6), ]
+
+#duplikate anzeigen
+duplicated(df10[c('org','id','age')])=="TRUE"
