@@ -61,3 +61,12 @@ plot(ecdf(qq.ts[['residuals']])) #CDF
 vif(lm(hpq_absolutPraesentismus~ .,data = df.hpq_absolut_praesentismus.def1)) #for VIF Test
 
 ncvTest(lm(hpq_absolutPraesentismus~ .,data = df.hpq_absolut_praesentismus.def2)) # for heteroscedastcity tests. If below 0.05 P value, we have heteroscedasticity
+
+# ROW ID hinzufügen
+df1<-tibble::rowid_to_column(df1)
+
+#Unique ID from string
+with(dfn, match(StringID, unique(StringID)))  
+#https://stackoverflow.com/questions/48881942/add-numeric-id-corresponding-with-a-string-id-in-r
+
+3
