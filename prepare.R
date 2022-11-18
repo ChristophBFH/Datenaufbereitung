@@ -103,3 +103,6 @@ semPlot::semPaths(fit,rotation = 2, what = "std")
 #Internal consistency
 digicomp<-dplyr::select(df,t1,t5,t6,t8,t11,t12,t16,t17,t19,t21,t23,t24)
 alpha(digicomp)
+
+#remove row with row numbre
+df[-c(2:4, 6), ]
