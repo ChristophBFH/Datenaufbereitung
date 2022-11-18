@@ -99,3 +99,7 @@ f3 = ~t3 + t5 + t9
 fit<-cfa(HS.model, data=df)
 summary(fit, fit.measures=TRUE, standardized=TRUE)
 semPlot::semPaths(fit,rotation = 2, what = "std")
+
+#Internal consistency
+digicomp<-dplyr::select(df,t1,t5,t6,t8,t11,t12,t16,t17,t19,t21,t23,t24)
+alpha(digicomp)
