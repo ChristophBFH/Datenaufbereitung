@@ -87,3 +87,15 @@ swiss2 <- function(m, data){
 
 #This runs the function from above
 df1<-swiss2(m, df$text)
+
+# CFA
+#Confirmatory factor analysis with 3 defined factor
+
+HS.model<- 'f1 = ~t16 + t17 + t19 + t21 + t24
+f2 = ~t1 + t6 + t8 + t10 + t11
+f3 = ~t3 + t5 + t9
+'
+
+fit<-cfa(HS.model, data=df)
+summary(fit, fit.measures=TRUE, standardized=TRUE)
+semPlot::semPaths(fit,rotation = 2, what = "std")
